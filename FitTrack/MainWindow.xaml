@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitTrack"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="FitTrack" Height="450" Width="400">
 
-    </Grid>
+    <StackPanel Margin="20">
+        <!-- Precis som i diagrammet -->
+        <TextBlock x:Name="LabelTitle" 
+                  Text="FitTrack"
+                  FontSize="24"/>
+
+        <TextBox x:Name="UsernameInput"
+                 Margin="0,10"/>
+
+        <PasswordBox x:Name="PasswordInput"
+                    Margin="0,10"/>
+
+        <Button Content="Sign In"
+                Click="SignIn"
+                Margin="0,10"/>
+
+        <Button Content="Register"
+                Click="Register"
+                Margin="0,10"/>
+    </StackPanel>
 </Window>

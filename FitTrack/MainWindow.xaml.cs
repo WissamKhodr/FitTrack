@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Data.Common;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,14 +12,25 @@ using System.Windows.Shapes;
 
 namespace FitTrack
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public string LabelTitle { get; set; }
+        public string UsernameInput { get; set; }
+        public string PasswordInput { get; set; }
+
+        private void SignIn(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            // Sign in logik
+            var workoutsWindow = new WorkoutsWindow();
+            workoutsWindow.Show();
+            this.Close();
+        }
+
+        private void Register(object sender, RoutedEventArgs e)
+        {
+            var registerWindow = new RegisterWindow();
+            registerWindow.Show();
+            this.Close();
         }
     }
 }
