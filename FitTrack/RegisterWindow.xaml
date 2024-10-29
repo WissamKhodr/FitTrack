@@ -1,19 +1,19 @@
-﻿<Window x:Class="FitTrack.MainWindow"
+﻿<Window x:Class="FitTrack.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitTrack"
         mc:Ignorable="d"
-        Title="FitTrack" Height="450" Width="400"
+        Title="Registrera - FitTrack" Height="500" Width="400"
         WindowStartupLocation="CenterScreen">
 
     <Grid Background="LightGray">
         <StackPanel VerticalAlignment="Center" Margin="20">
             
-            <TextBlock Text="FitTrack" 
+            <TextBlock Text="Skapa Konto" 
                      FontFamily="Arial"
-                     FontSize="48" 
+                     FontSize="32" 
                      HorizontalAlignment="Center"
                      Foreground="Crimson"
                      Margin="0,0,0,40"/>
@@ -28,21 +28,34 @@
             <TextBlock Text="Password:" 
                      Margin="0,0,0,5"/>
             <PasswordBox x:Name="PasswordInput" 
-                        Margin="0,0,0,25"
+                        Margin="0,0,0,15"
                         Padding="5"/>
 
+            <TextBlock Text="Country:" 
+                     Margin="0,0,0,5"/>
+            <ComboBox x:Name="CountryComboBox" 
+                     Margin="0,0,0,25"
+                     Padding="5">
+                <ComboBoxItem Content="Sverige"/>
+                <ComboBoxItem Content="Norge"/>
+                <ComboBoxItem Content="Danmark"/>
+                <ComboBoxItem Content="Finland"/>
+                <ComboBoxItem Content="Island"/>
+                
+            </ComboBox>
+
             
-            <Button x:Name="SignInButton" 
-                    Content="Sign In"
-                    Click="SignInButton_Click"
+            <Button x:Name="RegisterButton" 
+                    Content="Register"
+                    Click="RegisterButton_Click"
                     Background="Crimson"
                     Foreground="White"
                     Padding="5"
                     Margin="0,0,0,10"/>
 
-            <Button x:Name="RegisterButton" 
-                    Content="Register"
-                    Click="RegisterButton_Click"
+            <Button x:Name="BackButton" 
+                    Content="Back to Login"
+                    Click="BackButton_Click"
                     Background="White"
                     Foreground="Crimson"
                     BorderBrush="Crimson"
@@ -50,4 +63,3 @@
         </StackPanel>
     </Grid>
 </Window>
-

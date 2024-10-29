@@ -1,0 +1,106 @@
+﻿<Window x:Class="FitTrack.AddWorkoutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitTrack"
+        mc:Ignorable="d"
+        Title="Lägg Till Träningspass - FitTrack" Height="650" Width="400"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="LightGray">
+        <StackPanel Margin="20">
+            
+            <TextBlock Text="Ny Träningspass"
+                     FontFamily="Arial"
+                     FontSize="24"
+                     Foreground="Crimson"
+                     HorizontalAlignment="Center"
+                     Margin="0,0,0,30"/>
+
+            
+            <TextBlock Text="Workout Type:"
+                     Margin="0,0,0,5"/>
+            <ComboBox x:Name="WorkoutTypeComboBox"
+                     SelectionChanged="WorkoutTypeComboBox_SelectionChanged"
+                     Padding="5"
+                     Margin="0,0,0,15">
+                <ComboBoxItem Content="Cardio"/>
+                <ComboBoxItem Content="Strength"/>
+            </ComboBox>
+
+            
+            <TextBlock Text="Date:"
+                     Margin="0,0,0,5"/>
+            <DatePicker x:Name="DatePicker"
+                      Margin="0,0,0,15"/>
+
+            
+            <TextBlock Text="Time:"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="TimeInput"
+                    Text="12:00"
+                    Padding="5"
+                    Margin="0,0,0,15"/>
+
+            
+            <TextBlock Text="Duration (minutes):"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="DurationInput"
+                    Padding="5"
+                    Margin="0,0,0,15"/>
+
+            
+            <TextBlock Text="Calories Burned:"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="CaloriesInput"
+                    Padding="5"
+                    Margin="0,0,0,15"/>
+
+            
+            <StackPanel x:Name="CardioPanel" Visibility="Collapsed">
+                <TextBlock Text="Distance (km):"
+                         Margin="0,0,0,5"/>
+                <TextBox x:Name="DistanceInput"
+                        Padding="5"
+                        Margin="0,0,0,15"/>
+            </StackPanel>
+
+            <StackPanel x:Name="StrengthPanel" Visibility="Collapsed">
+                <TextBlock Text="Repetitions:"
+                         Margin="0,0,0,5"/>
+                <TextBox x:Name="RepetitionsInput"
+                        Padding="5"
+                        Margin="0,0,0,15"/>
+            </StackPanel>
+
+            
+            <TextBlock Text="Notes:"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="NotesInput"
+                    Height="60"
+                    TextWrapping="Wrap"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    Padding="5"
+                    Margin="0,0,0,20"/>
+
+            
+            <Button x:Name="SaveButton"
+                    Content="Save Workout"
+                    Click="SaveButton_Click"
+                    Background="Crimson"
+                    Foreground="White"
+                    Padding="5"
+                    Margin="0,0,0,10"/>
+
+            <Button x:Name="CancelButton"
+                    Content="Cancel"
+                    Click="CancelButton_Click"
+                    Background="White"
+                    Foreground="Crimson"
+                    BorderBrush="Crimson"
+                    Padding="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

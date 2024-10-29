@@ -1,0 +1,116 @@
+﻿<Window x:Class="FitTrack.WorkoutDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitTrack"
+        mc:Ignorable="d"
+        Title="Träningspass Detaljer - FitTrack" Height="650" Width="400"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="LightGray">
+        <StackPanel Margin="20">
+            
+            <TextBlock Text="Träningspass"
+                     FontFamily="Arial"
+                     FontSize="24"
+                     Foreground="Crimson"
+                     HorizontalAlignment="Center"
+                     Margin="0,0,0,20"/>
+
+            
+            <Button x:Name="EditButton"
+                    Content="Edit"
+                    Click="EditButton_Click"
+                    Background="Crimson"
+                    Foreground="White"
+                    HorizontalAlignment="Right"
+                    Padding="15,5"
+                    Margin="0,0,0,20"/>
+
+            
+            <TextBlock Text="Date:"
+                     Margin="0,0,0,5"/>
+            <DatePicker x:Name="DatePicker"
+                      IsEnabled="False"
+                      Margin="0,0,0,15"/>
+
+            <TextBlock Text="Time:"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="TimeInput"
+                    IsReadOnly="True"
+                    Padding="5"
+                    Margin="0,0,0,15"/>
+
+            <TextBlock Text="Type:"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="TypeInput"
+                    IsReadOnly="True"
+                    Padding="5"
+                    Margin="0,0,0,15"/>
+
+            <TextBlock Text="Duration (minutes):"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="DurationInput"
+                    IsReadOnly="True"
+                    Padding="5"
+                    Margin="0,0,0,15"/>
+
+            <TextBlock Text="Calories Burned:"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="CaloriesInput"
+                    IsReadOnly="True"
+                    Padding="5"
+                    Margin="0,0,0,15"/>
+
+            
+            <StackPanel x:Name="CardioPanel" Visibility="Collapsed">
+                <TextBlock Text="Distance (km):"
+                         Margin="0,0,0,5"/>
+                <TextBox x:Name="DistanceInput"
+                        IsReadOnly="True"
+                        Padding="5"
+                        Margin="0,0,0,15"/>
+            </StackPanel>
+
+            <StackPanel x:Name="StrengthPanel" Visibility="Collapsed">
+                <TextBlock Text="Repetitions:"
+                         Margin="0,0,0,5"/>
+                <TextBox x:Name="RepetitionsInput"
+                        IsReadOnly="True"
+                        Padding="5"
+                        Margin="0,0,0,15"/>
+            </StackPanel>
+
+            
+            <TextBlock Text="Notes:"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="NotesInput"
+                    Height="60"
+                    TextWrapping="Wrap"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    IsReadOnly="True"
+                    Padding="5"
+                    Margin="0,0,0,20"/>
+
+            
+            <Button x:Name="SaveButton"
+                    Content="Save Changes"
+                    Click="SaveButton_Click"
+                    Background="Crimson"
+                    Foreground="White"
+                    Padding="5"
+                    Margin="0,0,0,10"
+                    Visibility="Collapsed"/>
+
+            <Button x:Name="CancelButton"
+                    Content="Close"
+                    Click="CancelButton_Click"
+                    Background="White"
+                    Foreground="Crimson"
+                    BorderBrush="Crimson"
+                    Padding="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

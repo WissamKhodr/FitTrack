@@ -1,0 +1,87 @@
+﻿<Window x:Class="FitTrack.UserDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitTrack"
+        mc:Ignorable="d"
+        Title="Användarinfo - FitTrack" Height="650" Width="400"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="LightGray">
+        <StackPanel Margin="20">
+            
+            <TextBlock Text="Användarinfo"
+                     FontFamily="Arial"
+                     FontSize="24"
+                     Foreground="Crimson"
+                     HorizontalAlignment="Center"
+                     Margin="0,0,0,30"/>
+
+            
+            <TextBlock Text="Current Username:"
+                     Margin="0,0,0,5"/>
+            <TextBlock x:Name="CurrentUsernameText"
+                     Background="White"
+                     Padding="5"
+                     Margin="0,0,0,15"/>
+
+            <TextBlock Text="Current Country:"
+                     Margin="0,0,0,5"/>
+            <TextBlock x:Name="CurrentCountryText"
+                     Background="White"
+                     Padding="5"
+                     Margin="0,0,0,30"/>
+
+            
+            <TextBlock Text="New Username:"
+                     Margin="0,0,0,5"/>
+            <TextBox x:Name="NewUsernameInput"
+                    Padding="5"
+                    Margin="0,0,0,15"/>
+
+            
+            <TextBlock Text="New Password:"
+                     Margin="0,0,0,5"/>
+            <PasswordBox x:Name="NewPasswordInput"
+                        Padding="5"
+                        Margin="0,0,0,15"/>
+
+            <TextBlock Text="Confirm Password:"
+                     Margin="0,0,0,5"/>
+            <PasswordBox x:Name="ConfirmPasswordInput"
+                        Padding="5"
+                        Margin="0,0,0,15"/>
+
+            
+            <TextBlock Text="New Country:"
+                     Margin="0,0,0,5"/>
+            <ComboBox x:Name="CountryComboBox"
+                     Padding="5"
+                     Margin="0,0,0,30">
+                <ComboBoxItem Content="Sverige"/>
+                <ComboBoxItem Content="Norge"/>
+                <ComboBoxItem Content="Danmark"/>
+                <ComboBoxItem Content="Finland"/>
+                <ComboBoxItem Content="Island"/>
+            </ComboBox>
+
+            
+            <Button x:Name="SaveButton"
+                    Content="Save Changes"
+                    Click="SaveButton_Click"
+                    Background="Crimson"
+                    Foreground="White"
+                    Padding="5"
+                    Margin="0,0,0,10"/>
+
+            <Button x:Name="CancelButton"
+                    Content="Cancel"
+                    Click="CancelButton_Click"
+                    Background="White"
+                    Foreground="Crimson"
+                    BorderBrush="Crimson"
+                    Padding="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

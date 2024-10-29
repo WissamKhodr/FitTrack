@@ -14,21 +14,86 @@ namespace FitTrack
 {
     public partial class MainWindow : Window
     {
-        public string LabelTitle { get; set; }
-        public string UsernameInput { get; set; }
-        public string PasswordInput { get; set; }
+        private UserManager _userManager;
 
-        private void SignIn(object sender, RoutedEventArgs e)
+        public MainWindow()
         {
-            // Sign in logik
-            var workoutsWindow = new WorkoutsWindow();
-            workoutsWindow.Show();
-            this.Close();
+            InitializeComponent();
+            _userManager = new UserManager();
+            InitializeDefaultUsers();
         }
 
-        private void Register(object sender, RoutedEventArgs e)
+        private void InitializeDefaultUsers()
         {
-            var registerWindow = new RegisterWindow();
+            
+            if (!_userManager.UserExists("admin"))
+            {
+                var adminUser = new AdminUser
+                {
+                    Username = "admin",
+                    Password = "password"
+                };
+                _userManager.AddUser(adminUser);
+            }
+
+            
+            if (!_userManager.UserExists("user"))
+            {
+                var regularUser = new User
+                {
+                    Username = "user",
+                    Password = "password",
+                    Country = "Sweden"
+                };
+
+                _userManager.AddUser(regularUser);
+
+                
+                var workout1 = new CardioWorkout
+                {
+                    Date = DateTime.Now.AddDays(-1),
+                    Type = "Jogga",
+                    Duration = TimeSpan.FromMinutes(30),
+                    Distance = 5,
+                    Notes = "Joggning På Morgonen"
+                };
+
+                var workout2 = new StrengthWorkout
+                {
+                    Date = DateTime.Now.AddDays(-2),
+                    Type = "Styrketräning",
+                    Duration = TimeSpan.FromMinutes(45),
+                    Repetitions = 12,
+                    Notes = "Bröst träning"
+                };
+
+                _userManager.AddWorkoutToUser("user", workout1);
+                _userManager.AddWorkoutToUser("user", workout2);
+            }
+        }
+
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
+        {
+            string username = UsernameInput.Text;
+            string password = PasswordInput.Password;
+
+            if (_userManager.ValidateUser(username, password))
+            {
+                var user = _userManager.GetUser(username);
+                var workoutsWindow = new WorkoutsWindow(user, _userManager);
+                workoutsWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Fel namn eller lösenord!", "Fel!",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            var registerWindow = new RegisterWindow(_userManager);
             registerWindow.Show();
             this.Close();
         }
