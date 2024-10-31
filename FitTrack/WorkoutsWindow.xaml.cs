@@ -101,14 +101,15 @@ namespace FitTrack
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(
-                "FitTrack by Wizz - Din Personlig Fitness App\n\n" +
+                "FitTrack by Wizz & Zizi - Din Personlig Fitness App\n\n" +
                 "• Lägg till träningspass med 'Add Workout' knappen\n" +
                 "• Visa detaljer genom att trycka på ett träningspass och sedan 'Details' knappen\n" +
                 "• Ta bort träningspass med 'Remove' knappen\n" +
                 "• Kom åt dina användar detaljer via 'User Details' knappen\n\n" +
                 "Med FitTrack kan du få precis den body typen du har alltid viljat ha!\n\n" +
-                "By wizz - FitTrack",
-                "DIN PERSONLIGA FITNESS APP",
+                "By wizz & zizi - FitTrack\n\n" +
+                "Ideas & Creativity by zizi",
+                "FitTrack App",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information
             );
