@@ -25,7 +25,16 @@ namespace FitTrack
 
         private void InitializeDefaultUsers()
         {
-            
+            if (!_userManager.UserExists("wizza"))
+            {
+                var adminUser = new AdminUser
+                {
+                    Username = "wizza",
+                    Password = "password"
+                };
+                _userManager.AddUser(adminUser);
+            }
+
             if (!_userManager.UserExists("zizi"))
             {
                 var adminUser = new AdminUser
