@@ -73,8 +73,8 @@
                     x:Name="AddWorkoutButton" 
                     Content="Add Workout"
                     Click="AddWorkoutButton_Click"
-                    Background="Crimson"
-                    Foreground="White"
+                    Background="White"
+                    Foreground="Crimson"
                     HorizontalAlignment="Left"
                     Padding="15,5"
                     Margin="0,0,0,10"/>
