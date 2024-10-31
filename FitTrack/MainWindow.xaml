@@ -10,15 +10,13 @@
 
     <Grid Background="LightGray">
         <StackPanel VerticalAlignment="Center" Margin="20">
-            
-            <TextBlock Text="FitTrack" 
-                     FontFamily="Arial"
-                     FontSize="48" 
-                     HorizontalAlignment="Center"
-                     Foreground="Crimson"
-                     Margin="0,0,0,40"/>
 
-            
+            <Image Source="/Images/logo-no-background.png"  
+                Width="255"
+           Height="137"
+           />
+
+
             <TextBlock Text="Username:" 
                      Margin="0,0,0,5"/>
             <TextBox x:Name="UsernameInput" 
@@ -31,7 +29,7 @@
                         Margin="0,0,0,25"
                         Padding="5"/>
 
-            
+
             <Button x:Name="SignInButton" 
                     Content="Sign In"
                     Click="SignInButton_Click"

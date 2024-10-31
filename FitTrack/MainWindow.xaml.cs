@@ -40,7 +40,8 @@ namespace FitTrack
                 var adminUser = new AdminUser
                 {
                     Username = "zizi",
-                    Password = "password"
+                    Password = "password",
+                    Country = "Lebanon"
                 };
                 _userManager.AddUser(adminUser);
             }
