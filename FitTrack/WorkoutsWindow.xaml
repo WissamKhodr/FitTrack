@@ -51,6 +51,18 @@
                         Height="30"
                         FontSize="16"
                         Margin="0,0,10,0"/>
+                <TextBox x:Name="SearchBox" 
+             Width="150"
+             Height="25"
+             Margin="0,0,10,0"
+             VerticalAlignment="Center"/>
+
+                <Button x:Name="SearchButton"
+            Content="Sök träningspass" 
+            Click="SearchButton_Click"
+            Background="White"
+            Foreground="Crimson"
+            Padding="15,5"/>
 
                 <Button x:Name="SignOutButton" 
                         Content="Sign Out"

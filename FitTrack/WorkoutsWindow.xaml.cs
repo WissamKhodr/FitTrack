@@ -113,7 +113,35 @@ namespace FitTrack
                 MessageBoxImage.Information
             );
         }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchBox.Text))
+            {
+                RefreshWorkoutsList();
+                return;
+            }
 
+            var searchText = SearchBox.Text.ToLower();
+
+            var allWorkouts = _currentUser is AdminUser
+                ? _userManager.GetAllWorkouts()
+                : _userManager.GetUserWorkouts(_currentUser.Username);
+
+            var filteredWorkouts = allWorkouts.Where(w =>
+                w.Type.ToLower().Contains(searchText) ||
+                w.Date.ToString().ToLower().Contains(searchText) ||
+                w.Notes.ToLower().Contains(searchText)).ToList();
+
+            _workouts = new ObservableCollection<Workout>(filteredWorkouts);
+            WorkoutsListView.ItemsSource = _workouts;
+
+            if (!filteredWorkouts.Any())
+            {
+                MessageBox.Show("Hittade inga träningspass! Testa något annat. För att få tillbaka\n" +
+                    "alla träningspass, töm fältet och sök igen", "Inga resultat",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = new MainWindow();
