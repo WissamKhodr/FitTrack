@@ -26,11 +26,11 @@ namespace FitTrack
         private void InitializeDefaultUsers()
         {
             
-            if (!_userManager.UserExists("admin"))
+            if (!_userManager.UserExists("zizi"))
             {
                 var adminUser = new AdminUser
                 {
-                    Username = "admin",
+                    Username = "zizi",
                     Password = "password"
                 };
                 _userManager.AddUser(adminUser);
@@ -79,8 +79,8 @@ namespace FitTrack
 
             if (_userManager.ValidateUser(username, password))
             {
-                var user = _userManager.GetUser(username);
-                var workoutsWindow = new WorkoutsWindow(user, _userManager);
+                var zizi = _userManager.GetUser(username);
+                var workoutsWindow = new WorkoutsWindow(zizi, _userManager);
                 workoutsWindow.Show();
                 this.Close();
             }

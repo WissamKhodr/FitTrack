@@ -99,7 +99,6 @@
                     Click="CancelButton_Click"
                     Background="White"
                     Foreground="Crimson"
-                    BorderBrush="Crimson"
                     Padding="5"/>
         </StackPanel>
     </Grid>
