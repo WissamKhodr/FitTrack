@@ -89,15 +89,24 @@ namespace FitTrack
 
             if (_userManager.ValidateUser(username, password))
             {
-                var zizi = _userManager.GetUser(username);
-                var workoutsWindow = new WorkoutsWindow(zizi, _userManager);
-                workoutsWindow.Show();
-                this.Close();
+                var user = _userManager.GetUser(username);
+                if (user != null)
+                {
+                    // öppnar 2FA fönster istället för WorkoutsWindow direkt
+                    var twoFactorWindow = new TwoFactorWindow(user, _userManager);
+                    twoFactorWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Fel namn eller lösenord!", "Fel!",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             else
             {
                 MessageBox.Show("Fel namn eller lösenord!", "Fel!",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
