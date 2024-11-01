@@ -27,15 +27,15 @@ namespace FitTrack
             InitializeWindow();
         }
 
+        // sätter nuvarande uppgifter och väljer rätt land i listan
         private void InitializeWindow()
         {
             CurrentUsernameText.Text = _currentUser.Username;
             CurrentCountryText.Text = _currentUser.Country;
 
-            
             var countryItems = CountryComboBox.Items.Cast<ComboBoxItem>();
             var currentCountryItem = countryItems.FirstOrDefault(item =>
-                item.Content?.ToString() == _currentUser.Country); 
+                item.Content?.ToString() == _currentUser.Country);
 
             if (currentCountryItem != null)
             {
@@ -43,6 +43,7 @@ namespace FitTrack
             }
         }
 
+        // sparar alla nya uppgifter om dom är ok
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string newUsername = NewUsernameInput.Text.Trim();
@@ -50,7 +51,7 @@ namespace FitTrack
             string confirmPassword = ConfirmPasswordInput.Password;
             string newCountry = (CountryComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
 
-            
+            // kollar att användarnamnet är ok
             if (!string.IsNullOrEmpty(newUsername) && newUsername != _currentUser.Username)
             {
                 if (newUsername.Length < 3)
@@ -68,7 +69,7 @@ namespace FitTrack
                 }
             }
 
-            
+            // kollar att lösenordet är ok
             if (!string.IsNullOrEmpty(newPassword))
             {
                 if (newPassword.Length < 5)
@@ -86,7 +87,7 @@ namespace FitTrack
                 }
             }
 
-            
+            // uppdaterar det som ändrats
             bool hasChanges = false;
 
             if (!string.IsNullOrEmpty(newUsername) && newUsername != _currentUser.Username)
@@ -117,6 +118,7 @@ namespace FitTrack
             this.Close();
         }
 
+        // stänger utan att spara
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

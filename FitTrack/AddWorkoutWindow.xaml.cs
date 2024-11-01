@@ -27,20 +27,18 @@ namespace FitTrack
             InitializeWindow();
         }
 
+        // fixar så dagens datum är valt direkt när man öppnar
         private void InitializeWindow()
         {
-           
             DatePicker.SelectedDate = DateTime.Today;
-
-            
             WorkoutTypeComboBox.SelectedIndex = 0;
         }
 
+        // visar/gömmer olika fält beroende på vad man väljer för träning
         private void WorkoutTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedType = (WorkoutTypeComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
 
-            
             if (selectedType == "Cardio")
             {
                 CardioPanel.Visibility = Visibility.Visible;
@@ -53,15 +51,14 @@ namespace FitTrack
             }
         }
 
+        // kollar att allt är rätt ifyllt och sparar träningspasset
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                
                 if (!ValidateCommonFields())
                     return;
 
-                
                 DateTime date = DatePicker.SelectedDate ?? DateTime.Today;
                 TimeSpan time;
                 if (!TimeSpan.TryParse(TimeInput.Text, out time))
@@ -76,7 +73,6 @@ namespace FitTrack
                 int calories = int.Parse(CaloriesInput.Text);
                 string notes = NotesInput.Text;
 
-                
                 var workoutType = (WorkoutTypeComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
                 Workout workout;
 
@@ -100,7 +96,7 @@ namespace FitTrack
                         Distance = distance
                     };
                 }
-                else 
+                else
                 {
                     if (string.IsNullOrWhiteSpace(RepetitionsInput.Text))
                     {
@@ -121,7 +117,6 @@ namespace FitTrack
                     };
                 }
 
-                
                 _userManager.AddWorkoutToUser(_currentUser.Username, workout);
 
                 MessageBox.Show("Lagt till träningspass!",
@@ -141,6 +136,7 @@ namespace FitTrack
             }
         }
 
+        // kollar att alla fält är ifyllda 
         private bool ValidateCommonFields()
         {
             if (DatePicker.SelectedDate == null)
@@ -174,6 +170,7 @@ namespace FitTrack
             return true;
         }
 
+        // stänger fönstret
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

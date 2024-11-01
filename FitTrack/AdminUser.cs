@@ -17,10 +17,10 @@ namespace FitTrack
 
         public void ManageAllWorkouts()
         {
-            
+
         }
 
-        
+        // hämtar alla träningspass av en viss typ
         public List<Workout> GetWorkoutsByType(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
@@ -32,6 +32,7 @@ namespace FitTrack
                 .ToList();
         }
 
+        // hämtar alla träningspass för en användare
         public List<Workout> GetWorkoutsByUser(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
@@ -43,6 +44,7 @@ namespace FitTrack
                 .ToList();
         }
 
+        // hämtar alla träningspass mellan två datum
         public List<Workout> GetWorkoutsByDateRange(DateTime startDate, DateTime endDate)
         {
             if (startDate > endDate)
@@ -54,6 +56,7 @@ namespace FitTrack
                 .ToList();
         }
 
+        // tar bort alla träningspass för en användare
         public void RemoveWorkoutsByUser(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
@@ -62,6 +65,7 @@ namespace FitTrack
             _allWorkouts.RemoveAll(w => w.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
         }
 
+        // tar bort alla träningspass mellan två datum
         public void RemoveWorkoutsByDateRange(DateTime startDate, DateTime endDate)
         {
             if (startDate > endDate)
@@ -70,6 +74,7 @@ namespace FitTrack
             _allWorkouts.RemoveAll(w => w.Workout.Date >= startDate && w.Workout.Date <= endDate);
         }
 
+        // hämtar lista med alla användare som har träningspass
         public List<string> GetAllUsersWithWorkouts()
         {
             return _allWorkouts
@@ -78,6 +83,7 @@ namespace FitTrack
                 .ToList();
         }
 
+        // räknar ut statistik för alla träningspass
         public WorkoutStatistics GetWorkoutStatistics()
         {
             var mostActiveUser = _allWorkouts
@@ -99,11 +105,13 @@ namespace FitTrack
             };
         }
 
+        // hämtar alla träningspass som finns
         public List<Workout> GetAllWorkouts()
         {
             return _allWorkouts.Select(w => w.Workout).ToList();
         }
 
+        // lägger till ett träningspass för en användare
         public void AddWorkout(string username, Workout workout)
         {
             if (workout == null)
@@ -114,6 +122,7 @@ namespace FitTrack
             _allWorkouts.Add((username, workout));
         }
 
+        // tar bort ett specifikt träningspass för en användare
         public void RemoveWorkout(string username, Workout workout)
         {
             if (workout == null)

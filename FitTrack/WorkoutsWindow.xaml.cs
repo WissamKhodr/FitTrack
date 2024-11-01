@@ -30,25 +30,26 @@ namespace FitTrack
             InitializeWindow();
         }
 
+        // fixar listan med alla träningspass
         private void InitializeWindow()
         {
             UserNameText.Text = _currentUser.Username;
 
-            
+            // admins ser allas träningspass
             if (_currentUser is AdminUser)
             {
-                
                 _workouts = new ObservableCollection<Workout>(_userManager.GetAllWorkouts());
             }
             else
             {
-                
+                // vanliga users ser bara sina egna
                 _workouts = new ObservableCollection<Workout>(_userManager.GetUserWorkouts(_currentUser.Username));
             }
 
             WorkoutsListView.ItemsSource = _workouts;
         }
 
+        // öppnar fönster för att lägga till pass
         private void AddWorkoutButton_Click(object sender, RoutedEventArgs e)
         {
             var addWorkoutWindow = new AddWorkoutWindow(_currentUser, _userManager);
@@ -56,6 +57,7 @@ namespace FitTrack
             RefreshWorkoutsList();
         }
 
+        // öppnar fönster för att se detaljer
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedWorkout = WorkoutsListView.SelectedItem as Workout;
@@ -71,6 +73,7 @@ namespace FitTrack
             RefreshWorkoutsList();
         }
 
+        // tar bort valt träningspass
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedWorkout = WorkoutsListView.SelectedItem as Workout;
@@ -91,13 +94,15 @@ namespace FitTrack
             }
         }
 
+        // öppnar användarinställningar
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
             var userDetailsWindow = new UserDetailsWindow(_currentUser, _userManager);
             userDetailsWindow.ShowDialog();
-            UserNameText.Text = _currentUser.Username; 
+            UserNameText.Text = _currentUser.Username;
         }
 
+        // visar info om appen
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(
@@ -114,6 +119,8 @@ namespace FitTrack
                 MessageBoxImage.Information
             );
         }
+
+        // söker efter träningspass
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(SearchBox.Text))
@@ -124,10 +131,12 @@ namespace FitTrack
 
             var searchText = SearchBox.Text.ToLower();
 
+            // hämtar rätt lista att söka i
             var allWorkouts = _currentUser is AdminUser
                 ? _userManager.GetAllWorkouts()
                 : _userManager.GetUserWorkouts(_currentUser.Username);
 
+            // kollar typ, datum och anteckningar
             var filteredWorkouts = allWorkouts.Where(w =>
                 w.Type.ToLower().Contains(searchText) ||
                 w.Date.ToString().ToLower().Contains(searchText) ||
@@ -143,6 +152,8 @@ namespace FitTrack
                     MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        // loggar ut
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = new MainWindow();
@@ -150,6 +161,7 @@ namespace FitTrack
             this.Close();
         }
 
+        // uppdaterar listan med träningspass
         private void RefreshWorkoutsList()
         {
             if (_currentUser is AdminUser)

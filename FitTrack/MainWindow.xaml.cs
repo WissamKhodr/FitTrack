@@ -23,6 +23,7 @@ namespace FitTrack
             InitializeDefaultUsers();
         }
 
+        // lägger till test användare när appen startas
         private void InitializeDefaultUsers()
         {
             if (!_userManager.UserExists("wizza"))
@@ -46,7 +47,7 @@ namespace FitTrack
                 _userManager.AddUser(adminUser);
             }
 
-            
+            // skapar en test användare med några träningspass
             if (!_userManager.UserExists("user"))
             {
                 var regularUser = new User
@@ -55,10 +56,8 @@ namespace FitTrack
                     Password = "password",
                     Country = "Sweden"
                 };
-
                 _userManager.AddUser(regularUser);
 
-                
                 var workout1 = new CardioWorkout
                 {
                     Date = DateTime.Now.AddDays(-1),
@@ -82,6 +81,7 @@ namespace FitTrack
             }
         }
 
+        // kollar att användaren finns och lösenordet stämmer
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameInput.Text;
@@ -101,6 +101,7 @@ namespace FitTrack
             }
         }
 
+        // öppnar registrerings-fönstret
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             var registerWindow = new RegisterWindow(_userManager);

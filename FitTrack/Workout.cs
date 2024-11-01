@@ -8,6 +8,7 @@ namespace FitTrack
 {
     public abstract class Workout
     {
+        // startvärden så inget är null
         protected Workout()
         {
             _type = string.Empty;
@@ -22,6 +23,7 @@ namespace FitTrack
         private int _caloriesBurned;
         private string _notes;
 
+        // kollar att datumet inte är i framtiden
         public DateTime Date
         {
             get => _date;
@@ -33,6 +35,7 @@ namespace FitTrack
             }
         }
 
+        // träningstypen måste va ifylld
         public string Type
         {
             get => _type;
@@ -44,6 +47,7 @@ namespace FitTrack
             }
         }
 
+        // tiden måste va mellan 0-24h
         public TimeSpan Duration
         {
             get => _duration;
@@ -57,6 +61,7 @@ namespace FitTrack
             }
         }
 
+        // kalorierna måste va rimliga
         public int CaloriesBurned
         {
             get => _caloriesBurned;
@@ -64,12 +69,13 @@ namespace FitTrack
             {
                 if (value < 0)
                     throw new ArgumentException("Värdet måste vara positivt!");
-                if (value > 10000) 
+                if (value > 10000)
                     throw new ArgumentException("Känns lite för högt va? Lallare...");
                 _caloriesBurned = value;
             }
         }
 
+        // anteckningar är valfritt
         public string Notes
         {
             get => _notes;
@@ -78,6 +84,7 @@ namespace FitTrack
 
         public abstract int CalculateCaloriesBurned();
 
+        // kollar att alla värden är ok
         public virtual void Validate()
         {
             if (Date > DateTime.Now)

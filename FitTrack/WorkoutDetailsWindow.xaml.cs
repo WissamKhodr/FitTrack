@@ -30,9 +30,9 @@ namespace FitTrack
             InitializeWindow();
         }
 
+        // visar all info om träningspasset
         private void InitializeWindow()
         {
-            
             DatePicker.SelectedDate = _workout.Date.Date;
             TimeInput.Text = _workout.Date.ToString("HH:mm");
             TypeInput.Text = _workout.Type;
@@ -40,7 +40,7 @@ namespace FitTrack
             CaloriesInput.Text = _workout.CaloriesBurned.ToString();
             NotesInput.Text = _workout.Notes;
 
-            
+            // visar olika fält beroende på typ av pass
             if (_workout is CardioWorkout cardioWorkout)
             {
                 CardioPanel.Visibility = Visibility.Visible;
@@ -55,15 +55,15 @@ namespace FitTrack
             }
         }
 
+        // gör så man kan ändra i fälten
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             _isEditMode = !_isEditMode;
 
-            
             EditButton.Content = _isEditMode ? "Sluta Redigera" : "Redigera";
             SaveButton.Visibility = _isEditMode ? Visibility.Visible : Visibility.Collapsed;
 
-            
+            // låser upp/låser fälten
             DatePicker.IsEnabled = _isEditMode;
             TimeInput.IsReadOnly = !_isEditMode;
             DurationInput.IsReadOnly = !_isEditMode;
@@ -80,6 +80,7 @@ namespace FitTrack
             }
         }
 
+        // sparar ändringarna om allt är ok
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -87,7 +88,6 @@ namespace FitTrack
                 if (!ValidateInputs())
                     return;
 
-                
                 DateTime date = DatePicker.SelectedDate ?? DateTime.Today;
                 TimeSpan time;
                 if (!TimeSpan.TryParse(TimeInput.Text, out time))
@@ -102,13 +102,13 @@ namespace FitTrack
                 int calories = int.Parse(CaloriesInput.Text);
                 string notes = NotesInput.Text;
 
-                
+                // uppdaterar grundinfon
                 _workout.Date = dateTime;
                 _workout.Duration = TimeSpan.FromMinutes(duration);
                 _workout.CaloriesBurned = calories;
                 _workout.Notes = notes;
 
-                
+                // uppdaterar specialfälten
                 if (_workout is CardioWorkout cardioWorkout)
                 {
                     cardioWorkout.Distance = int.Parse(DistanceInput.Text);
@@ -118,18 +118,17 @@ namespace FitTrack
                     strengthWorkout.Repetitions = int.Parse(RepetitionsInput.Text);
                 }
 
-                
                 _userManager.UpdateWorkout(_currentUser.Username, _workout);
 
                 MessageBox.Show("Träningspass updaterad!",
                     "Klar!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                
+                // återgår till visningsläge
                 _isEditMode = false;
                 EditButton.Content = "Redigera";
                 SaveButton.Visibility = Visibility.Collapsed;
 
-                
+                // låser alla fält igen
                 DatePicker.IsEnabled = false;
                 TimeInput.IsReadOnly = true;
                 DurationInput.IsReadOnly = true;
@@ -156,6 +155,7 @@ namespace FitTrack
             }
         }
 
+        // kollar att alla fält är rätt ifyllda
         private bool ValidateInputs()
         {
             if (DatePicker.SelectedDate == null)
@@ -203,6 +203,7 @@ namespace FitTrack
             return true;
         }
 
+        // stänger utan att spara
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

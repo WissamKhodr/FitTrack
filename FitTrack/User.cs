@@ -12,6 +12,7 @@ namespace FitTrack
         private string _securityQuestion;
         private string _securityAnswer;
 
+        // startvärden så inget är null
         public User()
         {
             _country = string.Empty;
@@ -19,6 +20,7 @@ namespace FitTrack
             _securityAnswer = string.Empty;
         }
 
+        // kollar att man valt ett land
         public string Country
         {
             get => _country;
@@ -30,6 +32,7 @@ namespace FitTrack
             }
         }
 
+        // kollar säkerhetsfrågans format
         public string SecurityQuestion
         {
             get => _securityQuestion;
@@ -41,6 +44,7 @@ namespace FitTrack
             }
         }
 
+        // kollar svarets format
         public string SecurityAnswer
         {
             get => _securityAnswer;
@@ -52,28 +56,25 @@ namespace FitTrack
             }
         }
 
+        // extra koll på landet vid inloggning
         public override void SignIn()
         {
             base.SignIn();
-            
             if (string.IsNullOrWhiteSpace(Country))
                 throw new InvalidOperationException("Välj land!");
         }
 
+        // kollar allt när man byter lösenord
         public void ResetPassword(string securityAnswer, string newPassword)
         {
             if (string.IsNullOrWhiteSpace(securityAnswer))
                 throw new ArgumentException("Fel säkerhetsfråga!");
-
             if (string.IsNullOrWhiteSpace(newPassword))
                 throw new ArgumentException("Nya lösenordet kan inte vara tom!");
-
             if (newPassword.Length < 5)
                 throw new ArgumentException("Lösenordet måste vara minst 5 karaktärer lång!");
-
             if (securityAnswer.Trim().ToLower() != SecurityAnswer.Trim().ToLower())
                 throw new InvalidOperationException("Fel säkerhetsfråga!");
-
             Password = newPassword;
         }
     }

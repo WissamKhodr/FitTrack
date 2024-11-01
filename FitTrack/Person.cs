@@ -8,6 +8,7 @@ namespace FitTrack
 {
     public abstract class Person
     {
+        // startvärden så inget är null
         protected Person()
         {
             _username = string.Empty;
@@ -17,6 +18,7 @@ namespace FitTrack
         private string _username;
         private string _password;
 
+        // namn måste va minst 3 bokstäver långt 
         public string Username
         {
             get => _username;
@@ -30,6 +32,7 @@ namespace FitTrack
             }
         }
 
+        // lösen måste va minst 5 bokstäver
         public string Password
         {
             get => _password;
@@ -43,9 +46,9 @@ namespace FitTrack
             }
         }
 
+        // kollar att man fyllt i allt innan man loggar in
         public virtual void SignIn()
         {
-            
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
                 throw new InvalidOperationException("Du behöver lägga till ett namn och lösenord!");
         }
